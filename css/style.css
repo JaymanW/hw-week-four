@@ -65,10 +65,12 @@ header {
   color: #fff;
   font-size: 1.1rem;
   font-weight: 300;
+  width: 125px;
 }
 
 #timer-number {
   font-weight: 700;
+  font-size: 1.5rem;
 }
 
 /******************************************************/

@@ -99,13 +99,18 @@ $(document).ready(function() {
     const gameTimer = () => {
         const timerAction = () => {
             timer--;
-            console.log(timer);
+            $("#timer-number").text(timer);
+        }
+
+        if (timer === 0) {
+            clearInterval(timerAction);
+            timer = 0;
+            $("#timer-number").text(timer);
+            // END GAME FUNCTION
         }
         
         setInterval(timerAction, 1000);
     }
-
-    // gameTimer();
 
     const evaluateDisplay = () => {
         if (gameIsActive === false) {
@@ -143,13 +148,23 @@ $(document).ready(function() {
             let userSelection = $(this).attr("data-answer");
             console.log(userSelection);
             if (userSelection == quizData[roundCount].correct) {
-                nextRound();
-                // makeGreen(); //********************** */
+                console.log(userSelection);
+                // setTimeout(nextRound, 1000);
                 console.log("YOU WIN")
             } else {
-                timer = timer - 10;
-                nextRound();
-                console.log("YOU LOSE")
+                if (timer > 10) {
+                    timer = timer - 10;
+                    $("#timer-number").text(timer);
+                    // setTimeout(nextRound, 1000);
+                    console.log("YOU LOSE")
+                } else {
+                    clearInterval()
+                    timer = 0;
+                    $("#timer-number").text(timer);
+                    console.log("GAME OVER")
+                    // GAME OVER FUNCTION
+                }
+                
             }
         });
     }
@@ -164,6 +179,7 @@ $(document).ready(function() {
 
     const startGame = () => {
         gameIsActive = true;
+        gameTimer();
         evaluateDisplay();
         $("#message-display").empty();
     }
