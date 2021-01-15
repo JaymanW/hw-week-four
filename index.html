@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Quiz Time!</title>
 </head>
 <body>
-    
+    <div class="site-wrapper">
+        <header>
+            <button id="high-scores-btn">View Highscores</button>
+            <p id="timer">Time: <span id="timer-number">75</span></p>
+        </header>
+        <main>
+            <h1 id="title">Guitar Trivia Game</h1>
+            <!-- <p>by Jayden Watts</p> -->
+            <div id="question-display"></div>
+            <div id="answer-display"></div>
+            <a href="#" id="start-btn" alt="Start Game"></a>
+        </main>
+    </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
