@@ -9,18 +9,23 @@
 <body>
     <div class="site-wrapper">
         <header>
-            <button id="high-scores-btn">View Highscores</button>
+            <!-- <button id="high-scores-btn">View Highscores</button> -->
+            <img src="guitarLogoBetter.png" alt="">
             <p id="timer">Time: <span id="timer-number">75</span></p>
         </header>
         <main>
-            <h1 id="title">Guitar Trivia Game</h1>
-            <!-- <p>by Jayden Watts</p> -->
-            <div id="question-display"></div>
-            <div id="answer-display"></div>
-            <div id="message-display">
-                <p class="message-text">Welcome to the ultimate Guitar trivia game! Upon starting, your timer will begin counting down. You must answer 9 guitar trivia questions. Correct answers allow you to proceed without penalty, but a wrong answer will subtract 10 seconds from your score! Race to the finish and you just might set a highscore!</p>
-            </div>
-            <a href="#" id="start-btn" alt="Start Game"></a>
+            <section id="game-page">
+                <h1 id="title">Guitar Trivia Game</h1>
+                <div id="question-display"></div>
+                <div id="answer-display"></div>
+                <div id="message-display">
+                    <p class="message-text">Welcome to the ultimate Guitar trivia game! Upon starting, your timer will begin counting down. You must answer 9 guitar trivia questions. Correct answers allow you to proceed without penalty, but a wrong answer will subtract 10 seconds from your score! Race to the finish and you just might set a highscore!</p>
+                </div>
+                <a href="#" id="start-btn" alt="Start Game"></a>
+                <div id="highscore-cnt">
+                    <p>Highscore: <span id="user-score"></span></p>
+                </div>
+            </section>
         </main>
     </div>
 

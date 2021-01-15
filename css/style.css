@@ -74,7 +74,7 @@ header {
 }
 
 /******************************************************/
-/* MAIN */
+/* MAIN GAME*/
 #title {
   color: #fff;
   font-weight: 500;
@@ -87,6 +87,10 @@ header {
   margin-top: 1rem;
   width: 100%;
   height: 50px;
+}
+
+.question-header {
+  color: #d4d4d4ab;
 }
 
 #answer-display {
@@ -119,9 +123,20 @@ header {
 }
 
 /******************************************************/
-/* GENERATED ELEMENT STYLES */
-.question-header {
-  color: #d4d4d4ab;
+/* HIGHSCORE */
+#highscore-cnt {
+  position: fixed;
+  bottom: 5vh;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  font-weight: 200;
+}
+
+#highscore-cnt span {
+  font-weight: 600;
 }
 
 /******************************************************/
