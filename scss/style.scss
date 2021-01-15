@@ -23,6 +23,14 @@ body {
     max-width: 960px;
     margin: 0 auto;
 }
+
+.hidden {
+    display: none;
+}
+
+.unhidden {
+    display: block;
+}
 /******************************************************/
 /* HEADER */
 header {
@@ -67,7 +75,7 @@ header {
 
 #question-display {
     margin-top: 1rem;
-    border: 2px white dashed;
+    // border: 2px white dashed;
     width: 100%;
     height: 50px;
 }
@@ -77,6 +85,23 @@ header {
     border: 2px white dashed;
     width: 100%;
     height: 200px;
+}
+
+#message-display {
+    margin-top: 2rem;
+    // border: 2px white dashed;
+    width: 100%;
+    height: 100px;
+}
+
+.message-text {
+    color: #d4d4d4ab;
+    text-align: center;
+}
+/******************************************************/
+/* GENERATED ELEMENT STYLES */
+.question-header {
+    color: #d4d4d4ab;
 }
 /******************************************************/
 /* START BUTTON */

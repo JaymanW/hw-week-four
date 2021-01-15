@@ -44,9 +44,48 @@ $(document).ready(function() {
     const roundNineAnswers = ["1.25 million", "2.5 million", "5 million", "7.63 million"];
     const roundNineCorrect = 0;
 
+    let gameIsActive = false;
+
     let roundCount = 1;
 
-    const startGame = () => {
+    // const generateQuizRound = (roundQuestion, roundAnswers, roundCorrect) => {
+    //     const question = $("<h2>");
+    //     question.text(roundQuestion);
 
+    //     $("#question-display").append(question);
+    // }
+
+    const evaluateDisplay = () => {
+        if (gameIsActive === false) {
+            $("#question-display").attr("class", "hidden");
+            $("#answer-display").attr("class", "hidden");
+            $("#start-btn").attr("style", "display: flex;");
+            // $("#message-display").attr("class", "hidden");
+        } else {
+            $("#question-display").attr("class", "unhidden");
+            $("#answer-display").attr("class", "unhidden");
+            $("#start-btn").attr("style", "display: none");
+            // $("#message-display").attr("class", "unhidden");
+        }
     }
+
+    const generateQuizRound = (roundQuestion) => {
+        const question = $("<h2>");
+        question.attr("class", "question-header")
+        question.text(roundQuestion);
+
+        $("#question-display").append(question);
+    }
+
+    generateQuizRound(roundOneQuestion);
+
+    const startGame = () => {
+        gameIsActive = true;
+        evaluateDisplay();
+        console.log("Hello");
+    }
+
+    evaluateDisplay();
+
+    $("#start-btn").on("click", startGame);
 });
