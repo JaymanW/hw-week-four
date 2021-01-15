@@ -95,39 +95,47 @@ $(document).ready(function() {
     let gameIsActive = false;
     let timer = 75;
     let roundCount = 0;
+    let clockStart;
 
-    const gameTimer = () => {
-        const timerAction = () => {
-            timer--;
-            $("#timer-number").text(timer);
-        }
+    // RESET DISPLAYS
+    
+    const clearDisplay = () => {
+        $("#question-display").empty();
+        $("#answer-display").empty();
+    }
+    /*********************************************************/
+    // TIMER INTERATIONS
 
+    const timerAction = () => {
+        timer--;
+        $("#timer-number").text(timer);
         if (timer === 0) {
-            clearInterval(timerAction);
+            clearInterval(clockStart);
             timer = 0;
             $("#timer-number").text(timer);
-            // END GAME FUNCTION
+            gameLose();
+            // END GAME FUNCTION !!!!!!!!!!!!!!!!!!!!
         }
-        
-        setInterval(timerAction, 1000);
     }
+
+    /*********************************************************/
+    // EVALUATE DISPLAY
 
     const evaluateDisplay = () => {
         if (gameIsActive === false) {
             $("#question-display").attr("class", "hidden");
             $("#answer-display").attr("class", "hidden");
             $("#start-btn").attr("style", "display: flex;");
-            // $("#message-display").attr("class", "hidden");
+            $("#message-display").attr("class", "unhidden");
         } else {
             $("#question-display").attr("class", "unhidden");
             $("#answer-display").attr("class", "unhidden");
             $("#start-btn").attr("style", "display: none");
-            // $("#message-display").attr("class", "unhidden");
+            $("#message-display").attr("class", "hidden");
         }
     }
-
-    evaluateDisplay();
-
+    /*********************************************************/
+    // GENERATE QUIZ ELEMENTS
     const generateQuizRound = () => {
         // Generate Question
         const question = $("<h2>");
@@ -144,45 +152,34 @@ $(document).ready(function() {
             $("#answer-display").append(answer);
         }
 
+        // Answers Event Handlers
         $(".answer-selection").on("click", function() {
             let userSelection = $(this).attr("data-answer");
             console.log(userSelection);
             if (userSelection == quizData[roundCount].correct) {
                 console.log(userSelection);
-                // setTimeout(nextRound, 1000);
+                nextRound();
                 console.log("YOU WIN")
             } else {
                 if (timer > 10) {
                     timer = timer - 10;
                     $("#timer-number").text(timer);
-                    // setTimeout(nextRound, 1000);
+                    nextRound();
                     console.log("YOU LOSE")
                 } else {
-                    clearInterval()
+                    clearInterval(clockStart);
                     timer = 0;
                     $("#timer-number").text(timer);
                     console.log("GAME OVER")
-                    // GAME OVER FUNCTION
+                    gameLose();
+                    // GAME OVER FUNCTION !!!!!!!!!!!!!!!!!!!!!!
                 }
                 
             }
         });
     }
-
-    const clearDisplay = () => {
-        $("#question-display").empty();
-        $("#answer-display").empty();
-    }
-
-    // generateQuizRound();
-    generateQuizRound();
-
-    const startGame = () => {
-        gameIsActive = true;
-        gameTimer();
-        evaluateDisplay();
-        $("#message-display").empty();
-    }
+    /*********************************************************/
+    // NEXT ROUND
 
     const nextRound = () => {
         if (roundCount < 8) {
@@ -190,11 +187,52 @@ $(document).ready(function() {
             clearDisplay();
             generateQuizRound();
         } else {
-            // GAME OVER FUNCTION
+            // GAME OVER FUNCTION !!!!!!!!!!!!!!!!! WIN
         }
-        
-        
     }
+    /*********************************************************/
+    // GAME LOSE
+
+    const gameLose = () => {
+        clearDisplay();
+        const question = $("<h2>");
+        question.attr("class", "question-header")
+        question.text("GAME OVER :(");
+        $("#question-display").append(question);
+
+        setTimeout(resetGame, 2000);
+    }
+    /*********************************************************/
+    // RESET GAME
+
+    const resetGame = () => {
+        gameIsActive = false;
+        timer = 75;
+        roundCount = 0;
+        clockStart = null;
+        clearDisplay();
+        evaluateDisplay();
+        generateQuizRound();
+        evaluateDisplay();
+    }
+    /*********************************************************/
+    // START GAME
+
+    const startGame = () => {
+        gameIsActive = true;
+        clockStart = setInterval(timerAction, 1000);
+        evaluateDisplay();
+        // $("#message-display").empty();
+        $("#message-display").attr("class", "hidden");
+    }
+    /*********************************************************/
+    // INIT FUNCTIONS
+    
+    generateQuizRound();
+    evaluateDisplay();
+    /*********************************************************/
+    // EVENT HANDLERS
 
     $("#start-btn").on("click", startGame);
+    /*********************************************************/
 });
